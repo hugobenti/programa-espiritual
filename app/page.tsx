@@ -35,7 +35,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <div className="min-h-[100vh_-_64px] flex items-center justify-center">
-        <div className="animate-pulse text-muted-foreground">Carregando...</div>
+        <div className="animate-pulse text-muted-foreground pt-32">Carregando...</div>
       </div>
     );
   }
@@ -52,7 +52,7 @@ export default function Home() {
             <h1 className="font-serif text-5xl md:text-6xl font-medium text-balance">
               Programa Espiritual
             </h1>
-            <p className="text-xl text-muted-foreground text-balance">
+            <p className="text-xl text-muted-foreground text-balance mt-6">
               Você vai conhecer agora o PROGRAMA ESPIRITUAL. É um poderoso
               programa de orações que já beneficiou inúmeras pessoas com as
               graças que obtiveram. Recebeu este nome porque contém 63

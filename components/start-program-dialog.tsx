@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -9,40 +9,40 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { SundayPicker } from "@/components/sunday-picker"
-import { useProgress } from "@/hooks/use-progress"
-import ProgramInstructions from "./program-instructions"
+} from "@/components/ui/dialog";
+import { SundayPicker } from "@/components/sunday-picker";
+import { useProgress } from "@/hooks/use-progress";
+import ProgramInstructions from "./program-instructions";
 
 export function StartProgramDialog() {
-  const [open, setOpen] = useState(false)
-  const [showInstructions, setShowInstructions] = useState(false)
-  const [pendingStartDate, setPendingStartDate] = useState<Date | null>(null)
-  const [error, setError] = useState<string>("")
+  const [open, setOpen] = useState(false);
+  const [showInstructions, setShowInstructions] = useState(false);
+  const [pendingStartDate, setPendingStartDate] = useState<Date | null>(null);
+  const [error, setError] = useState<string>("");
 
-  const { start, isSunday, daysUntilSunday } = useProgress()
+  const { start, isSunday, daysUntilSunday } = useProgress();
 
   // chamado quando usuário escolhe domingo ou clica “começar hoje”
   const handleSelectDate = (date?: Date) => {
-    setError("")
-    setPendingStartDate(date ?? new Date())
-    setOpen(false)
-    setShowInstructions(true)
-  }
+    setError("");
+    setPendingStartDate(date ?? new Date());
+    setOpen(false);
+    setShowInstructions(true);
+  };
 
   // quando o usuário clica em “Continuar” após ler instruções
   const handleConfirmStart = () => {
     try {
       if (pendingStartDate) {
-        start(pendingStartDate)
+        start(pendingStartDate);
       } else {
-        start()
+        start();
       }
-      window.location.reload()
+      window.location.reload();
     } catch {
-      setError("Erro ao iniciar o programa.")
+      setError("Erro ao iniciar o programa.");
     }
-  }
+  };
 
   // === STEP 2: Leitura das instruções ===
   if (showInstructions) {
@@ -57,21 +57,26 @@ export function StartProgramDialog() {
               className="px-10 py-5 text-lg"
               onClick={handleConfirmStart}
             >
-              Continuar
+              Iniciar
             </Button>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // === STEP 1: Seleção de domingo ===
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="lg" className="text-lg px-8 py-6">
-          {isSunday ? "Começar Hoje" : `Começar (${daysUntilSunday} dias até domingo)`}
-        </Button>
+        <div>
+          <p className="text-xl text-gray-800 text-balance bg-amber-200 p-4 rounded-lg my-6">
+            Este programa deve ser iniciado em um domingo.
+          </p>
+          <Button size="lg" className="text-lg px-8 py-6">
+            {isSunday ? "Começar Hoje" : `Selecionar domingo inicial`}
+          </Button>
+        </div>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-[500px]">
@@ -80,7 +85,11 @@ export function StartProgramDialog() {
           <DialogDescription>
             O programa deve começar em um domingo.
             {!isSunday && (
-              <> Faltam <strong>{daysUntilSunday} dias</strong> para o próximo domingo.</>
+              <>
+                <br />
+                Faltam <strong>{daysUntilSunday} dias</strong> para o próximo
+                domingo.
+              </>
             )}
           </DialogDescription>
         </DialogHeader>
@@ -106,5 +115,5 @@ export function StartProgramDialog() {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

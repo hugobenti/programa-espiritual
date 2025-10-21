@@ -153,7 +153,7 @@ function DialogDescription({ className, ...props }: React.ComponentProps<'div'>)
   return (
     <div
       data-slot="dialog-description"
-      className={cn('text-muted-foreground text-sm', className)}
+      className={cn('text-muted-foreground text-md', className)}
       {...props}
     />
   )
