@@ -59,7 +59,7 @@ export default function ProgramInstructions() {
   );
 
   return (
-    <div className=" flex flex-col justify-center items-center">
+    <div className=" flex flex-col justify-center items-center px-4 sm:px-8">
       <div className="max-w-2xl mt-8">
         <div className="prose prose-stone mx-auto text-left border rounded-lg p-4 bg-amber-100">
           <p className="text-lg">Atenção!</p>
