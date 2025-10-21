@@ -3,5 +3,5 @@
   "/page": "app/page.js",
   "/instrucoes/page": "app/instrucoes/page.js",
   "/dias/[day]/page": "app/dias/[day]/page.js",
-  "/api/reflections/[day]/route": "app/api/reflections/[day]/route.js"
+  "/oracoes/page": "app/oracoes/page.js"
 }
